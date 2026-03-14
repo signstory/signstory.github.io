@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SignStory — ตัวเลขที่คุณยังไม่เคยนับ</title>
 <meta name="description" content="Interactive experiences ที่ชวนคิด — ไม่มีคำตอบสำเร็จรูป มีแค่ตัวเลข แล้วแต่คุณจะตีความ">
-<meta property="og:title" content="SignStory — ตัวเลขที่คุณยังไม่เคยนับ">
-<meta property="og:description" content="Interactive experiences ที่ชวนคิด ไม่ตัดสิน">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,7 +17,6 @@
     --text3: #999999;
     --border: rgba(0,0,0,0.1);
     --blue: #185FA5;
-    --green: #0F6E56;
     --radius: 12px;
   }
 
@@ -49,165 +46,39 @@
     background: var(--bg2);
   }
 
-  .brand {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: var(--text3);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+  .brand { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--text3); text-transform: uppercase; margin-bottom: 1rem; }
 
-  .hero h1 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-  }
-
+  .hero h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 0.75rem; }
   .hero h1 span { color: var(--blue); }
+  .hero p { font-size: 16px; color: var(--text2); max-width: 440px; margin: 0 auto 1.5rem; line-height: 1.7; }
 
-  .hero p {
-    font-size: 16px;
-    color: var(--text2);
-    max-width: 440px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.7;
-  }
-
-  .hero-links {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.15s;
-  }
-
+  .btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; background: var(--blue); color: #ffffff; transition: opacity 0.15s; }
   .btn:hover { opacity: 0.85; }
-  .btn-primary { background: var(--blue); color: #ffffff; }
-  .btn-secondary { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
 
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-  }
+  .container { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem; }
 
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 1.25rem;
-  }
+  .philosophy { border-left: 3px solid var(--blue); padding: 1rem 1.25rem; background: var(--bg2); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 2rem; font-size: 15px; color: var(--text2); line-height: 1.7; font-style: italic; }
 
-  .ep-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
-    margin-bottom: 3rem;
-  }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 1.25rem; }
 
-  .ep-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s, background 0.15s;
-    display: block;
-  }
+  .ep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 3rem; }
 
-  .ep-card:hover {
-    background: var(--bg3);
-    border-color: var(--blue);
-  }
+  .ep-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: border-color 0.15s; display: block; }
+  .ep-card:hover { border-color: var(--blue); }
 
-  .ep-number {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--text3);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
+  .ep-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--bg3); display: block; }
+  .ep-thumb-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text3); }
 
-  .ep-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
+  .ep-body { padding: 1rem; }
+  .ep-date { font-size: 11px; color: var(--text3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .ep-title { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.4; }
 
-  .ep-desc {
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.6;
-  }
+  .loading { text-align: center; padding: 3rem 0; color: var(--text3); font-size: 14px; }
 
-  .ep-tag {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: var(--bg3);
-    color: var(--text3);
-    border: 1px solid var(--border);
-  }
+  .empty { text-align: center; padding: 2rem; color: var(--text3); font-size: 14px; background: var(--bg2); border-radius: var(--radius); border: 1px solid var(--border); }
+  .empty a { color: var(--blue); text-decoration: none; }
 
-  .ep-tag.new {
-    background: #EDF7F0;
-    color: #0F6E56;
-    border-color: #9FE1CB;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .ep-tag.new {
-      background: #0a2e20;
-      color: #5DCAA5;
-      border-color: #085041;
-    }
-  }
-
-  .coming-soon {
-    opacity: 0.45;
-    pointer-events: none;
-  }
-
-  .philosophy {
-    border-left: 3px solid var(--blue);
-    padding: 1rem 1.25rem;
-    background: var(--bg2);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    margin-bottom: 2rem;
-    font-size: 15px;
-    color: var(--text2);
-    line-height: 1.7;
-    font-style: italic;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    border-top: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text3);
-  }
-
+  footer { text-align: center; padding: 2rem 1.5rem; border-top: 1px solid var(--border); font-size: 13px; color: var(--text3); }
   footer a { color: var(--blue); text-decoration: none; }
 </style>
 </head>
@@ -215,12 +86,9 @@
 
 <div class="hero">
   <div class="brand">SignStory</div>
-  <h1>ตัวเลขที่คุณ<span>ยังไม่เคยนับ</span></h1>
-  <p>Interactive experiences ที่ชวนคิด — ไม่มีคำตอบสำเร็จรูป มีแค่ตัวเลข แล้วแต่คุณจะตีความ</p>
-  <div class="hero-links">
-    <a href="https://www.youtube.com/@signstory" target="_blank" class="btn btn-primary">YouTube Channel</a>
-    <a href="/ep001-daily-drink" class="btn btn-secondary">เริ่มจาก EP001</a>
-  </div>
+  <h1>ตัวเลขที่คุณ<span>อาจยังไม่เคยนับ</span></h1>
+  <p>Interactive experiences ที่ไม่ได้บอกว่าถูกหรือผิด แค่อยากชวนให้ลองคิด</p>
+  <a href="https://www.youtube.com/@signstory" target="_blank" class="btn">YouTube @signstory</a>
 </div>
 
 <div class="container">
@@ -229,39 +97,75 @@
     "การศึกษาที่ดีไม่ได้ให้คำตอบ — มันฝึกให้คุณตั้งคำถามเป็น"
   </div>
 
-  <div class="section-label">Interactive Episodes</div>
-
-  <div class="ep-grid">
-
-    <a href="/ep001-daily-drink" class="ep-card">
-      <div class="ep-number">EP001</div>
-      <div class="ep-title">เครื่องดื่มประจำวันของคุณ ราคาเท่าไหร่จริงๆ?</div>
-      <div class="ep-desc">ชานมไข่มุก กาแฟ เบียร์ — ลองกรอกแล้วดูว่าตัวเลขบอกอะไร</div>
-      <span class="ep-tag new">ใหม่</span>
-    </a>
-
-    <div class="ep-card coming-soon">
-      <div class="ep-number">EP002</div>
-      <div class="ep-title">เร็วๆ นี้</div>
-      <div class="ep-desc">ติดตาม SignStory บน YouTube เพื่อไม่พลาด ep ถัดไป</div>
-      <span class="ep-tag">coming soon</span>
-    </div>
-
-    <div class="ep-card coming-soon">
-      <div class="ep-number">EP003</div>
-      <div class="ep-title">เร็วๆ นี้</div>
-      <div class="ep-desc">ติดตาม SignStory บน YouTube เพื่อไม่พลาด ep ถัดไป</div>
-      <span class="ep-tag">coming soon</span>
-    </div>
-
+  <div class="section-label">Episodes ล่าสุด</div>
+  <div class="ep-grid" id="ep-grid">
+    <div class="loading">กำลังโหลด episodes...</div>
   </div>
 
 </div>
 
 <footer>
-  <p>ผมไม่ได้บอกว่าอะไรถูกหรือผิด — มีแค่ตัวเลข แล้วแต่คุณจะตีความ</p>
-  <p style="margin-top:8px"><a href="https://www.youtube.com/@signstory" target="_blank">YouTube @signstory</a></p>
+  ไม่ได้บอกว่าถูกหรือผิด แค่อยากชวนให้ลองคิด<br>
+  <a href="https://www.youtube.com/@signstory" target="_blank">YouTube @signstory</a>
 </footer>
 
+<script>
+const CHANNEL_ID = 'UC8GjT0zutPz63uX0iNPr6RA';
+const RSS = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+const PROXY = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS);
+
+function formatDate(str) {
+  return new Date(str).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function getVideoId(url) {
+  const m = url.match(/[?&]v=([^&]+)/);
+  return m ? m[1] : null;
+}
+
+function parseRSS(xml) {
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  return Array.from(doc.querySelectorAll('entry')).map(e => ({
+    title:     e.querySelector('title')?.textContent || '',
+    link:      e.querySelector('link')?.getAttribute('href') || '',
+    published: e.querySelector('published')?.textContent || '',
+  }));
+}
+
+function renderVideos(items) {
+  const grid = document.getElementById('ep-grid');
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty">ยังไม่มี episodes — <a href="https://www.youtube.com/@signstory" target="_blank">ติดตามบน YouTube</a></div>';
+    return;
+  }
+  grid.innerHTML = items.map(item => {
+    const vid   = getVideoId(item.link);
+    const thumb = vid ? `https://i.ytimg.com/vi/${vid}/mqdefault.jpg` : null;
+    return `
+      <a href="${item.link}" target="_blank" class="ep-card">
+        ${thumb
+          ? `<img class="ep-thumb" src="${thumb}" alt="${item.title}" loading="lazy">`
+          : `<div class="ep-thumb-placeholder">SignStory</div>`}
+        <div class="ep-body">
+          <div class="ep-date">${formatDate(item.published)}</div>
+          <div class="ep-title">${item.title}</div>
+        </div>
+      </a>`;
+  }).join('');
+}
+
+async function load() {
+  try {
+    const res  = await fetch(PROXY);
+    const data = await res.json();
+    renderVideos(parseRSS(data.contents));
+  } catch {
+    document.getElementById('ep-grid').innerHTML =
+      '<div class="empty">ดู episodes ทั้งหมดได้ที่ <a href="https://www.youtube.com/@signstory" target="_blank">youtube.com/@signstory</a></div>';
+  }
+}
+
+load();
+</script>
 </body>
 </html>
